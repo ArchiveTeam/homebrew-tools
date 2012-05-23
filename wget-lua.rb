@@ -30,6 +30,14 @@ class WgetLua < Formula
     bin.install "src/wget" => "wget-warc-lua"
   end
 
+  def caveats
+    <<-EOS.undent
+    The Tabblo seesaw.sh script looks for wget-warc-lua in the
+    working directory; you may need to tweak it so it can find
+    the Homebrew-provided version.
+    EOS
+  end
+
   def test
     system "#{bin}/wget-warc-lua", "-O", "-", "www.google.com"
   end
