@@ -32,9 +32,9 @@ class WgetLua < Formula
 
   def caveats
     <<-EOS.undent
-    The Tabblo seesaw.sh script looks for wget-warc-lua in the
-    working directory; you may need to tweak it so it can find
-    the Homebrew-provided version.
+    This only provides the wget-warc-lua tool. If you want to install the
+    entire Tabblo download script, you probably want to `brew install tabblo`
+    instead.
     EOS
   end
 
