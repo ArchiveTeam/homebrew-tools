@@ -15,6 +15,7 @@ class Tabblo < Formula
 
   depends_on "openssl" if MacOS.leopard?
   depends_on "lua"
+  depends_on "coreutils" # bsd du doesn't cut it
 
   keg_only "This is so that downloaded data is not placed in your #{HOMEBREW_PREFIX}."
 
