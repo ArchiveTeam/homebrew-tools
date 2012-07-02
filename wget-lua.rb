@@ -2,9 +2,9 @@ require 'formula'
 
 class WgetLua < Formula
   homepage 'https://github.com/alard/wget-lua'
-  url 'https://github.com/downloads/ArchiveTeam/tabblo-grab/wget-lua-20120522b.tar.gz'
-  md5 'd98cca1c6dc57d0dbc99522f97e774b8'
-  version '20120522'
+  url 'https://github.com/downloads/ArchiveTeam/picplz-grab/wget-lua-20120602.tar.gz'
+  sha1 'ab42c26e38c25b70839e7d768094736033e4b3c3'
+  version '20120602'
 
   depends_on "openssl" if MacOS.leopard?
   depends_on "libidn" if ARGV.include? "--enable-iri"
@@ -32,9 +32,9 @@ class WgetLua < Formula
 
   def caveats
     <<-EOS.undent
-    This only provides the wget-warc-lua tool. If you want to install the
-    entire Tabblo download script, you probably want to `brew install tabblo`
-    instead.
+    This only provides the wget-warc-lua tool. If you're looking to
+    run one of the Archive Team projects, look at the other formulae
+    in this repository.
     EOS
   end
 
