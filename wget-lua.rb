@@ -36,9 +36,9 @@ class WgetLua < Formula
 
   def caveats
     <<-EOS.undent
-    This only provides the wget-warc-lua tool. If you're looking to
-    run one of the Archive Team projects, look at the other formulae
-    in this repository.
+    This only provides the wget-lua tool. If you're looking to
+    run one of the Archive Team projects, try the Warrior:
+      http://archive.org/details/archiveteam-warrior
     EOS
   end
 
