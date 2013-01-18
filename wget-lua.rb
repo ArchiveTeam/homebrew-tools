@@ -12,12 +12,10 @@ class WgetLua < Formula
   depends_on :libtool => :build
   depends_on "gettext"
   depends_on "openssl" if MacOS.version < 10.6
-  depends_on "libidn" if ARGV.include? "--enable-iri"
+  depends_on "libidn" if build.include? "enable-iri"
   depends_on "lua"
 
-  def options
-    [["--enable-iri", "Enable iri support."]]
-  end
+  option 'enable-iri', 'Enable iri support.'
 
   def install
     args = ["--disable-debug",
@@ -27,7 +25,7 @@ class WgetLua < Formula
             # don't clobber standard wget
             "--program-suffix=-lua"]
 
-    args << "--disable-iri" unless ARGV.include? "--enable-iri"
+    args << "--disable-iri" unless build.include? "enable-iri"
 
     system "./bootstrap"
     system "./configure", *args
