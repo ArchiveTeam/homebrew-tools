@@ -2,11 +2,16 @@ require 'formula'
 
 class WgetLua < Formula
   homepage 'https://github.com/alard/wget-lua'
-  url 'https://github.com/downloads/ArchiveTeam/picplz-grab/wget-lua-20120602.tar.gz'
-  sha1 'ab42c26e38c25b70839e7d768094736033e4b3c3'
-  version '20120602'
+  url 'https://github.com/alard/wget-lua.git',
+    :revision => '959e5d1e90f4ac515418f1ada9852bb14fe11c11'
+  version '20120920'
+  head 'https://github.com/alard/wget-lua.git', :branch => 'lua'
 
-  depends_on "openssl" if MacOS.leopard?
+  depends_on "autoconf" => :build
+  depends_on "automake" => :build
+  depends_on :libtool => :build
+  depends_on "gettext"
+  depends_on "openssl" if MacOS.version < 10.6
   depends_on "libidn" if ARGV.include? "--enable-iri"
   depends_on "lua"
 
@@ -20,14 +25,15 @@ class WgetLua < Formula
             "--sysconfdir=#{etc}",
             "--with-ssl=openssl",
             # don't clobber standard wget
-            "--program-suffix=-warc-lua"]
+            "--program-suffix=-lua"]
 
     args << "--disable-iri" unless ARGV.include? "--enable-iri"
 
+    system "./bootstrap"
     system "./configure", *args
     system "make"
 
-    bin.install "src/wget" => "wget-warc-lua"
+    bin.install "src/wget" => "wget-lua"
   end
 
   def caveats
@@ -39,6 +45,6 @@ class WgetLua < Formula
   end
 
   def test
-    system "#{bin}/wget-warc-lua", "-O", "-", "www.google.com"
+    system "#{bin}/wget-lua", "-O", "-", "www.google.com"
   end
 end
